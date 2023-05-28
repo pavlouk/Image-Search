@@ -59,15 +59,17 @@ async def image_search(search: SearchBase, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_thumbnail)
 
-    return {"Access your thumbnail at: ": f"{get_settings().BASE_URL}/{generated_key}"}  # type: ignore
+    return {"Access your thumbnail at: ": f"{get_settings().BASE_URL}/{generated_key}"}
 
 
 @app.get("/{thumbnail_key}")
 def show_thumbnail(thumbnail_key: str, request: Request, db: Session = Depends(get_db)):
     try:
-        db_thumbnails = db.query(Thumbnail).filter(Thumbnail.key == thumbnail_key).first()  # type: ignore
+        db_thumbnails = (
+            db.query(Thumbnail).filter(Thumbnail.key == thumbnail_key).first()
+        )
         if db_thumbnails:
-            return Response(db_thumbnails.thumbnail_image, media_type="image/jpeg")  # type: ignore
+            return Response(db_thumbnails.thumbnail_image, media_type="image/jpeg")
 
         raise HTTPException(status_code=400, detail=f"{thumbnail_key=} not found")
     except HTTPException:
