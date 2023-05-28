@@ -7,11 +7,11 @@ load_dotenv()
 
 
 class Settings(BaseSettings):
-    unsplash_key: str
-    usplash_api: str = "https://api.unsplash.com/search/photos"
-    env_name: str = "Local"
-    base_url: str = "http://localhost:8000"
-    db_url: str = "sqlite:///./thumbnails.db"
+    UNSPLASH_KEY: str
+    UNSPLASH_API: str = "https://api.unsplash.com/search/photos"
+    ENV_NAME: str = "Local"
+    BASE_URL: str = "http://localhost:8000"
+    DB_URL: str = "sqlite:///./thumbnails.db"
 
     class Config:
         env_file = ".env"
@@ -20,5 +20,5 @@ class Settings(BaseSettings):
 @lru_cache
 def get_settings() -> Settings:
     settings = Settings()  # type: ignore
-    print(f"Loading settings for: {settings.env_name}")
+    print(f"Loading settings for: {settings.ENV_NAME}")
     return settings

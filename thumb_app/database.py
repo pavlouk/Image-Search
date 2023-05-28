@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 from thumb_app.config import get_settings
 
-engine = create_engine(get_settings().db_url, connect_args={"check_same_thread": False})
+engine = create_engine(get_settings().DB_URL, connect_args={"check_same_thread": False})
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
