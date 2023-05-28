@@ -13,9 +13,10 @@ from thumb_app.models import Thumbnail
 from thumb_app.schemas import SearchBase
 from thumb_app.utils import create_thumbnail
 
+ENCODING_CHOICES = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 app = FastAPI()
 Base.metadata.create_all(bind=engine)
-ENCODING_CHOICES = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 def get_db():
@@ -62,7 +63,7 @@ async def image_search(search: SearchBase, db: Session = Depends(get_db)):
     return {"Access your thumbnail at: ": f"{get_settings().BASE_URL}/{generated_key}"}
 
 
-@app.get("/{thumbnail_key}")
+@app.get("/search/{thumbnail_key}")
 def show_thumbnail(thumbnail_key: str, request: Request, db: Session = Depends(get_db)):
     try:
         db_thumbnails = (
