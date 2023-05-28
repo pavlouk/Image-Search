@@ -3,8 +3,8 @@ from io import BytesIO
 import httpx
 from PIL import Image
 
-from . import schemas
-from .config import get_settings
+from thumb_app import schemas
+from thumb_app.config import get_settings
 
 
 def unsplash_builder(search: schemas.SearchBase) -> str:
@@ -36,6 +36,7 @@ async def fetch_image(search_url: str):
         search_results = response_body.get("results", {})
         urls = search_results[0].get("urls", {})
         raw_url = urls.get("small", "Error")
+        
         image_response = await client.get(raw_url)
         response.raise_for_status()
         image_buffer = BytesIO(image_response.content)

@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from .enums import ColorEnum, OrientationEnum
+from thumb_app.enums import ColorEnum, OrientationEnum
 
 
 class SearchBase(BaseModel):

@@ -1,7 +1,7 @@
 from sqlalchemy import Boolean, Column, Integer, String
 from sqlalchemy.dialects.sqlite import BLOB
 
-from .database import Base
+from thumb_app.database import Base
 
 
 class Thumbnail(Base):
