@@ -3,17 +3,17 @@
 Search and store thumbnails for free from unsplash images. Online images can be extremely large and slow to load. This is where a thumbnail creator can come in handy. A thumbnail creator can reduce the size of images, making it easier to access, and share.
 ## Prerequisites
 
-Create a free Unsplash account and access the developers / API product. Create an app on the platform and copy the access key and paste it on the `.envexample`. Rename `.envexample` to `.env` 
+Create a free Unsplash account and access the developers / API product. Create an app on the platform and copy the access key and paste it on the `.envexample`. Rename `.envexample` to `.env`
 
 ## Installation
 
-Download the project, then create and activate virtual environment in the project directory 
+Download the project, then create and activate virtual environment in the project directory
 
 ```shell
 python -m venv venv
-# on windows 
-.\venv\Scripts\activate
-# on unix 
+# on windows
+./venv/Scripts/activate
+# on unix
 source venv/bin/activate
 ```
 
@@ -42,15 +42,15 @@ Here’s a summary of the thumbnail API endpoints:
 
 For easy API access open a browser on `http://127.0.0.1:8000/docs` and use the endpoints.
 
-## Examples 
-#### Docs Page 
+## Examples
+#### Docs Page
 
-![image-20220915170537097](.\screenshots\image-20220915170537097.png)
+![image-20220915170537097](./screenshots/image-20220915170537097.png)
 
-#### Search Request 
-![image-20220915170755970](.\screenshots\image-20220915170755970.png)
+#### Search Request
+![image-20220915170755970](./screenshots/image-20220915170755970.png)
 #### View Thumbnail
 
-![image-20220915170856440](.\screenshots\image-20220915170856440.png)
+![image-20220915170856440](./screenshots/image-20220915170856440.png)
 
-![image-20220915171150838](.\screenshots\image-20220915171150838.png)
+![image-20220915171150838](./screenshots/image-20220915171150838.png)

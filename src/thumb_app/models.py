@@ -1,5 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String
-from sqlalchemy.dialects.sqlite import BLOB
+from sqlalchemy import Column, Integer, String
 
 from thumb_app.database import Base
 
