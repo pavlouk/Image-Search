@@ -1,11 +1,11 @@
 import httpx
 from fastapi import HTTPException
 
-from thumb_app.config import get_settings
+from thumb_app import settings
 
 
 async def fetch_image(url=None, query_params={}):
-    fetch_url = url or get_settings().UNSPLASH_API
+    fetch_url = url or settings.UNSPLASH_API
     params = query_params or None
 
     async with httpx.AsyncClient() as client:

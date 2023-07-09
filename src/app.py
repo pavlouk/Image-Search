@@ -4,10 +4,11 @@ from io import BytesIO
 
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import Response
+from PIL import Image
 from sqlalchemy.orm import Session
 
+from thumb_app import settings
 from thumb_app.client import fetch_image
-from thumb_app.config import get_settings
 from thumb_app.database import Base, SessionLocal, engine
 from thumb_app.models import Thumbnail
 from thumb_app.schemas import SearchBase
@@ -45,9 +46,10 @@ async def image_search(search: SearchBase, db: Session = Depends(get_db)):
         raw_url = urls.get("small", "Error")
     else:
         raise HTTPException(400)
+
     try:
         image_buffer = BytesIO(await fetch_image(raw_url).content)
-        thumbnail_string = create_thumbnail(image_buffer)
+        thumbnail_string = create_thumbnail(Image.open(image_buffer), BytesIO())
     except HTTPException:
         raise HTTPException(400)
 
@@ -60,7 +62,7 @@ async def image_search(search: SearchBase, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_thumbnail)
 
-    return {"Access your thumbnail at: ": f"{get_settings().BASE_URL}/{generated_key}"}
+    return {"Access your thumbnail at: ": f"{settings.BASE_URL}/{generated_key}"}
 
 
 @app.get("/search/{thumbnail_key}")
